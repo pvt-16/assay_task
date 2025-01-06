@@ -1,0 +1,31 @@
+Our assay's raw output from one sample is a set of fluorescence vs time curves, one for each target mutation in the assay.  Each curve typically starts fairly level, rises, then levels off, earlier when the target mutation is present than when it is absent (see plot1.png).
+
+This data represents an experiment comparing 3 versions of the assay ('ConditionA', 'ConditionB', 'ConditionC').  Each version has the same 32 target mutations, and is tested on the same 32 known and 16 unknown samples.  
+
+curves.csv contains the fluorescence vs time data (each row is a curve, each column is a time point).  
+labels.csv contains the condition, sample number, target number, and for known samples, presence or absence of this target mutation. 
+
+The known samples each have 4 of the target mutations, while the unknown samples may have any number but typically around 1.
+
+Please write code to:
+
+(1) Identify the mutations in the unknown samples using two independent methods.
+
+One simple way to do this is (see plot1.png):
+- Find the time ("Cq") at which each curve crosses a fixed signal threshold.
+- For each target and condition, use the known samples to define a time threshold.
+- Consider mutations to be present if their Cq is before this time threshold, and absent if after it.
+
+Another method might be to apply machine learning.
+
+In both cases, you are encouraged to consider how your approach might be improved.
+
+(2) Assess which of the 3 assay versions is best overall.
+How you define "best" is up to you, but should be some reasonable estimate of which one would have the lowest overall error rate.  
+
+You may assume that the assay would typically be used on samples containing around 1 mutation per sample. 
+You are encouraged to consider how well your definition would work on data sets smaller than this.  
+(For obvious cost reasons, we would prefer to be able to test a proposed change to the assay on as few samples as possible.)
+
+You may use any programming language.  
+You are encouraged to include comments on what you'd try if you had more time, but should also include working code.
